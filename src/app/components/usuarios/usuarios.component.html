@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><img class="img-fluid" style="width: 100px;" src="https://sixdegreesit.co/wp-content/uploads/2021/03/logo-grande.png" alt=""></a>
+    <span style="width: 20px;">
+        <mat-icon aria-label="refresh" (click)="getUsuarios()">
+          <i class="fas fa-sync fa-lg btnRefresh"></i>
+        </mat-icon>
+      </span>
+  </nav>
+<div class="bodyCustomer">
+    <div class="container">
+     
+        <!-- ubicaciones -->
+        <div class="containerDosUbicaciones">
+            <div class="cardList">
+
+                <div style="display: flex;" layout="row">
+                    <div class='div-right'>
+                        <mat-paginator #paginator [length]="totalRows$ | async" [pageIndex]="0" [pageSize]="10"
+                            [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+                    </div>
+                </div>
+                <div class="animated fadeIn">
+                    <mat-accordion displayMode="flat" multi class="mat-table">
+                        <section matSort class="mat-elevation-z2 mat-header-row">
+                           
+                            <span class="mat-header-cell">UsuarioId</span>
+                            <span class="mat-header-cell">Usuario Nombre</span>
+
+                        </section>
+                        <div style="overflow-y: auto; min-height: 150px;max-height: 550px;">
+                            <mat-expansion-panel [disabled]="true" #mep="matExpansionPanel"
+                                *ngFor="let item of displayedRows$ | async">
+
+                                <mat-expansion-panel-header class="mat-row">
+                                    <span class="mat-cell" style="justify-content: left">{{item.usuarioId}}</span>
+                                    <span class="mat-cell" style="justify-content: left">{{item.usuarioNombre}} {{item.usuarioApellido}}</span>
+                                </mat-expansion-panel-header>
+                            </mat-expansion-panel>
+                        </div>
+
+                    </mat-accordion>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
